@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Easy SVG
+Plugin Name: Easy SVG Support 
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress
-Version:     1.0
+Version:     1.0.1
 Author:      Benjamin Zekavica
 Author URI:  http://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -41,6 +41,8 @@ function esw_filetype($checked, $file, $filename, $mimes){
 	 $ext = $esw_filetype['ext'];
 	 $type = $esw_filetype['type'];
 	 $proper_filename = $filename;
+
+/* Upload checking filename */ 	 
 
  if($type && 0 === strpos($type, 'image/') && $ext !== 'svg'){
  	$ext = $type = false;

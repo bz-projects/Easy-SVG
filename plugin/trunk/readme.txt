@@ -1,21 +1,23 @@
-=== EASY SVG Support ===
+=== Easy SVG Support ===
 Author URI: https://www.benjamin-zekavica.de
 Plugin URI: https://wordpress.org/plugins/easy-svg/
-Contributors: Benjamin Zekavica
-Tags: svg, svg support, svg upload, svg media
-Requires at least: 4.9
+Contributors: Benjamin_Zekavica
+Donate link: https://www.paypal.me/benjaminzekavica
+Tags: svg, svg support, svg upload, svg media, easy, easy-svg, easy svg, files, upload, icons
+Requires at least: 3.8
 Tested up to: 4.9
-Stable tag: 1.0
+Requires PHP: 7.0
+Stable tag: 1.0.1
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
-Allow you to upload SVG Files into your Media library. 
+This Plugin allows you to upload SVG Files into your Media library. 
 
 == Description ==
 
 = Direct Upload SVG Files into WordPress  =
 
-EASY SVG Support is a Plugin which allow you to upload SVG Files into your Media library. This plugin was created for persons, who don’t need much options for SVG. 
+EASY SVG Support is a Plugin which allows you to upload SVG Files into your Media library. This plugin was created for persons, who don’t need much options for SVG. 
 
 = Features of the plugin include: =
 
@@ -39,12 +41,23 @@ info@benjamin-zekavica.de or you can ask your question in the forums section.
 
 One options panel, where you can customize your SVG Files and SVG Sprites. 
 
+= Do you need a Source Code? =
+
+Please check out my repository on Github: 
+https://github.com/BenjaminZekavica/WordPress-Easy-SVG
+
 == Screenshots ==
-
-
+1. Upload direct into your WordPress Media
 
 == Changelog ==
+= 1.0.1: 28th of November, 2017 =
 
-= 1.0.0: November, 2017 =
+* Edit new Text 
+
+
+= 1.0.0: 28th of November, 2017 =
 
 * Initial Release
+
+== Upgrade Notice ==
+This plugin can use on beginning versions of WordPress 4.0 to 4.9 
