@@ -66,17 +66,20 @@ function esw_upload_check($checked, $file, $filename, $mimes){
 	 $type = $esw_upload_check['type'];
 	 $proper_filename = $filename;
 
-/* ======================================== 
-   Upload checking filename 
-   ======================================== */ 	 
+    /* ======================================== 
+        Upload checking filename 
+       ======================================== */ 	 
 
- if($type && 0 === strpos($type, 'image/') && $ext !== 'svg'){
- 	$ext = $type = false;
+   if($type && 0 === strpos($type, 'image/') && $ext !== 'svg'){
+   	$ext = $type = false;
+   }
+   	$checked = compact('ext','type','proper_filename');
  }
- 	$checked = compact('ext','type','proper_filename');
- }
+
  return $checked;
+
 }
+
 add_filter('wp_check_filetype_and_ext', 'esw_upload_check', 10, 4);
 
 
