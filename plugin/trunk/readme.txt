@@ -7,7 +7,7 @@ Tags: svg, svg support, svg upload, svg media, easy, easy-svg, easy svg, files, 
 Requires at least: 3.8
 Tested up to: 4.9
 Requires PHP: 7.0
-Stable tag: 1.0.1
+Stable tag: 2.0
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -50,6 +50,11 @@ https://github.com/BenjaminZekavica/WordPress-Easy-SVG
 1. Upload direct into your WordPress Media
 
 == Changelog ==
+
+= 1.1: 29th of November, 2017 =
+
+* Add a smole Alert message for users.  
+
 = 1.0.1: 28th of November, 2017 =
 
 * Edit new Text 
