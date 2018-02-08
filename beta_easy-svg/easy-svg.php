@@ -131,11 +131,17 @@ function esw_admin_notice_example_notice(){
         <div class="updated notice is-dismissible">
             <p>
     				  <strong>
-    				  	<?php _e( 'Thank you for using this plugin!' , 'easy-svg' ) ; ?> 
+    				  	<?php
+                     _e( 'Thank you for using this plugin!' , 'easy-svg' ) ; 
+                  ?> 
     				  </strong><br />
-    				    <?php _e( 'Go now to the Media Libary and upload your SVG Files.' , 'easy-svg' ); ?> 
+    				    <?php
+                   _e( 'Go now to the Media Libary and upload your SVG Files.' , 'easy-svg' ); 
+                  ?> 
     				     <br /><br />
-    				     <?php _e( 'Kind Regards', 'easy-svg' ); ?>
+    				     <?php 
+                    _e( 'Kind Regards', 'easy-svg' );
+                  ?>
     				     <br />
     				    <strong>
     				      Benjamin Zekavica
@@ -280,34 +286,29 @@ function esw_enque_scripts($hook) {
 
   function esw_options_menu() {
 
-    // Define the menu 
-
       $menu = add_menu_page( 
 
-            // Add Translation strings and different function names
+          // Add Translation strings and different function names
 
-            __( 'SVG Options Page', 'easy-svg' ),
-            __( 'SVG Options', 'easy-svg' ),
- 
-            
-            //  Roles and function namens 
-            //  @param https://developer.wordpress.org/reference/functions/add_menu_page/ 
+           _e('SVG Options', 'easy-svg'),
 
-            'administrator',
-            'easy_svg_options',
-            'esw_options_menu_page',
-            'dashicons-svg',
-             80 
+
+          // Roles and function namens
+
+           'administrator',
+           'easy-svg-support',
+           'svg_settings', 
+           'dashicons-svg', 77
       );
 
-  }
+   }
 
 
  /* ============================
       Add Admin Styles 
     ============================ */ 
 
-    add_action( 'admin_print_styles' . $menu, 'easy_svg_options' );
+    add_action( 'admin_print_styles' . $menu, 'wp_esw_uploadlimit' );
     
     // Add Hook for Styling with function name 
 
@@ -351,3 +352,77 @@ function esw_enque_scripts($hook) {
 /* ============================
      Options Page Markup 
    ============================ */ 
+
+
+function svg_settings() {  ?>
+
+    <div class="wrap about-wrap full-width-layout">
+
+      <!-- Add Header Section  -->
+
+        <h1>
+           <?php _e('Welcome to Easy SVG Support for WordPress' , 'easy-svg'); ?>
+        </h1>
+
+        <p class="about-text">
+          <?php
+           _e('WordPress Easy SVG Plugin was created for you! Easy to install, easy to optimize, easy to config all SVG uploads. Our big feature is to look your SVG File in the Media Libary. Here on the optionspage you can add more uploadlimit size. Best Regards Benjamin Zekavica.' , 'easy-svg'); ?>
+        </p>
+
+        <div class="wp-badge svg-support-lable">
+            <?php _e('Easy SVG Support Version 2.0', 'easy-svg'); ?><br />
+        </div>
+
+        <!-- Add options for memory -->
+
+              
+               <form method="post">
+                  <?php
+                      settings_fields("header_section");
+                      do_settings_sections("manage_options"); 
+                      wp_nonce_field('upload_max_file_size_action', 'upload_max_file_size_field');
+                      submit_button();
+                  ?>
+                </form>
+
+                <?php
+                  /**
+                   * form end 
+                   * @since 1.2
+                   */
+                  //submit form start 
+                  if (!isset($_POST['upload_max_file_size_field']) || !wp_verify_nonce($_POST['upload_max_file_size_field'], 'upload_max_file_size_action')) {
+                      echo 'Sorry, your nonce did not verify.';
+                      exit;
+                  } else {
+                      $number = sanitize_text_field($_POST['number']);
+                      update_option('max_file_size', $number);
+                  }
+                }
+                //filter
+                add_filter('upload_size_limit', 'upload_max_increase_upload');
+
+                function upload_max_increase_upload() {
+                  return get_option('max_file_size');
+                }
+                function max_display_options() {
+                  //section name, display name, callback to print description of section, page to which section is attached.
+                  add_settings_section("header_section", "Increase Upload Maximum File Size", "max_display_header_options_content", "manage_options");
+                  add_settings_field("header_logo", "Enter Value In Number", "max_display_logo_form_element", "manage_options", "header_section");
+                  register_setting("header_section", "number");
+                }
+
+                function max_display_header_options_content() {
+                  echo "";
+                }
+
+                function max_display_logo_form_element() {
+                   printf(
+                          '<input type="text" id="number" name="number" value="%s" />',
+                          (null!==get_option('max_file_size') ) ? esc_attr( get_option('max_file_size')) : ''
+                      );
+                }
+                add_action("admin_init", "max_display_options");
+              ?>
+
+        </div>
