@@ -3,11 +3,11 @@ Author URI: https://www.benjamin-zekavica.de
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Contributors: Benjamin_Zekavica
 Donate link: https://www.paypal.me/benjaminzekavica
-Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
-Requires at least: 4.9.4
-Tested up to: 4.9.4
-Requires PHP: 5.6
-Stable tag: 1.2
+Tags: svg, svg support, svg upload, svg media, easy, easy-svg, easy svg, files, upload, icons
+Requires at least: 3.8
+Tested up to: 4.9
+Requires PHP: 7.0
+Stable tag: 1.1
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -44,7 +44,6 @@ One options panel, where you can customize your SVG Files and SVG Sprites.
 = Do you need a Source Code? =
 
 Please check out my repository on Github: 
-
 https://github.com/BenjaminZekavica/WordPress-Easy-SVG
 
 == Screenshots ==
