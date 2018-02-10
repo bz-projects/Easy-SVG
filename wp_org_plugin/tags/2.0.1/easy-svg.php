@@ -199,7 +199,7 @@ function esw_admin_notice_example_notice(){
       echo "<br /><br />";
 
       _e( 'Version Number', 'easy-svg' ); 
-      echo "&nbsp;2.0";
+      echo "&nbsp;2.0.1";
    
     }
 
