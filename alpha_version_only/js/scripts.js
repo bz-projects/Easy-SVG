@@ -1,43 +1,47 @@
-/*  =======================================
-    Plugin Name: Easy SVG Support 
-    Author: Benjamin Zekavica
-    Compatible on version WordPress 4.9.3
-    Release 2018
-    ======================================= */ 
+/*
+Plugin Name: Easy SVG Support 
+Description: Add SVG Support for WordPress.
+Version:     2.0
+Author:      Benjamin Zekavica
+
+Copyright by: 
+(c) 2017 - 2018 by Benjamin Zekavica. All rights reserved. 
+
+Imprint: 
+Benjamin Zekavica
+Oranienstraße 12
+52066 Aachen 
+
+E-Mail: info@benjamin-zekavica.de
+Web: www.benjamin-zekavica.de
+
+I don't give support by Mail. Please write in the 
+community forum for questions and problems.  
+
+*/
 
 
-//create a mutation observer to look for added 'attachments' in the media uploader
+/* Add Function with AJAX to display the thumbnail */ 
+
 var observer = new MutationObserver(function(mutations){
 
-  // look through all mutations that just occured
   for (var i=0; i < mutations.length; i++){
-
-    // look through all added nodes of this mutation
     for (var j=0; j < mutations[i].addedNodes.length; j++){
-
-        //get the applicable element
         element = $(mutations[i].addedNodes[j]); 
-
-        //execute only if we have a class
         if(element.attr('class')){
 
             elementClass = element.attr('class');
-            //find all 'attachments'
             if (element.attr('class').indexOf('attachment') != -1){
 
-                //find attachment inner (which contains subtype info)
                 attachmentPreview = element.children('.attachment-preview');
-
                 if(attachmentPreview.length != 0){
 
-                    //only run for SVG elements
                     if(attachmentPreview.attr('class').indexOf('subtype-svg+xml') != -1){
-
-                        //bind an inner function to element so we have access to it. 
+                        
                         var handler = function(element){
 
                             //do a WP AJAX call to get the URL 
-                            $.AJAX({
+                            jQuery.AJAX({
 
                                 url: AJAXurl,
                                 data: {
@@ -61,9 +65,4 @@ var observer = new MutationObserver(function(mutations){
         }
     }
   }
-});
-
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
 });

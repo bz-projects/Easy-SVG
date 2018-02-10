@@ -4,7 +4,7 @@ Plugin URI: https://wordpress.org/plugins/easy-svg/
 Contributors: Benjamin_Zekavica
 Donate link: https://www.paypal.me/benjaminzekavica
 Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
-Requires at least: 3.8
+Requires at least: 4.9.4
 Tested up to: 4.9.4
 Requires PHP: 5.6
 Stable tag: 1.2
