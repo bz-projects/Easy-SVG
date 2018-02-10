@@ -195,7 +195,7 @@ function esw_admin_notice_example_notice(){
 
     function esw_support_dashbord_widget_text() {
 
-      _e( '<h2>Welcome to EASY SVG!</h2><br /> Thank you for your installtion of my custom plugin! Do you want to Upload SVG Files? Than go to the Media Libary and Upload it! :) <br /><br /> Best Regards <br /> <strong>Benjamin Zekavica<strong>', 'easy-svg' );
+      _e( '<h2>Welcome to EASY SVG!</h2><br /> Thank you for your installtion of my custom plugin! Do you want to Upload SVG Files? Than go to the Media Libary and Upload it! <br /><br /> Best Regards <br /> <strong>Benjamin Zekavica<strong>', 'easy-svg' );
       echo "<br /><br />";
 
       _e( 'Version Number', 'easy-svg' ); 
