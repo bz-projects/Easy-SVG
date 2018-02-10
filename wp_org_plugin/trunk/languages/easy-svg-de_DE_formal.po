@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy SVG Support\n"
-"POT-Creation-Date: 2018-02-06 18:10+0100\n"
-"PO-Revision-Date: 2018-02-06 18:41+0100\n"
+"POT-Creation-Date: 2018-02-10 15:33+0100\n"
+"PO-Revision-Date: 2018-02-10 15:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -21,19 +21,33 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: easy-svg.php:106
+#: easy-svg.php:135
 msgid "Thank you for using this plugin!"
-msgstr "Vielen Dank für die Nutzung von Easy SVG Support!"
+msgstr "Vielen Dank für die Nutzung von Easy SVG!"
 
-#: easy-svg.php:108
+#: easy-svg.php:137
 msgid "Go now to the Media Libary and upload your SVG Files."
-msgstr ""
-"Besuchen Sie jetzt die Media Library von WordPress und laden Sie Ihre SVG "
-"Dateien hoch."
+msgstr "Gehen Sie jetzt zur Mediathek und lade deine SVG Dateien hoch."
 
-#: easy-svg.php:110
+#: easy-svg.php:139
 msgid "Kind Regards"
 msgstr "Mit freundlichen Grüßen"
+
+#: easy-svg.php:198
+msgid ""
+"<h2>Welcome to EASY SVG!</h2><br /> Thank you for your installtion of my "
+"custom plugin! Do you want to Upload SVG Files? Than go to the Media Libary "
+"and Upload it! <br /><br /> Best Regards <br /> <strong>Benjamin "
+"Zekavica<strong>"
+msgstr ""
+"<h2>Herzlich willkommen zum EASY SVG Plugin!</h2><br /> Vielen Dank für die "
+"Installation des Plugins! Möchten Sie nun SVG Dateien hochladen? Dann "
+"besuchen Sie die Mediathek.<br /><br /> Beste Grüße<br /> <strong>Benjamin "
+"Zekavica<strong>"
+
+#: easy-svg.php:201
+msgid "Version Number"
+msgstr "Versionsnummer"
 
 #. Plugin Name of the plugin/theme
 msgid "Easy SVG Support"
@@ -44,8 +58,8 @@ msgid "https://wordpress.org/plugins/easy-svg/"
 msgstr "https://wordpress.org/plugins/easy-svg/"
 
 #. Description of the plugin/theme
-msgid "Add SVG Support for WordPress"
-msgstr "Fügt die SVG Unterstützung für WordPress hinzu"
+msgid "Add SVG Support for WordPress."
+msgstr "Fügt die Möglichkeit hinzu, SVG Dateien hochzuladen."
 
 #. Author of the plugin/theme
 msgid "Benjamin Zekavica"

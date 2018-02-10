@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy SVG Support\n"
-"POT-Creation-Date: 2018-02-06 16:37+0100\n"
-"PO-Revision-Date: 2018-02-06 16:37+0100\n"
+"POT-Creation-Date: 2018-02-10 15:38+0100\n"
+"PO-Revision-Date: 2018-02-10 15:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -22,17 +22,31 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: easy-svg.php:104
+#: easy-svg.php:135
 msgid "Thank you for using this plugin!"
-msgstr "Puno Hvala za installiranje ovog plugina! "
+msgstr "Puno hvala zu installatiu ovog dodataka za WordPress!"
 
-#: easy-svg.php:106
+#: easy-svg.php:137
 msgid "Go now to the Media Libary and upload your SVG Files."
-msgstr "Idi sada u WordPress Media i ubazi tvoj SVG. "
+msgstr "Idi sada u Mediatheku i sastavljaj tvoj SVG."
 
-#: easy-svg.php:108
+#: easy-svg.php:139
 msgid "Kind Regards"
-msgstr "Sa pozdravom"
+msgstr "Sa Pozdravom"
+
+#: easy-svg.php:198
+msgid ""
+"<h2>Welcome to EASY SVG!</h2><br /> Thank you for your installtion of my "
+"custom plugin! Do you want to Upload SVG Files? Than go to the Media Libary "
+"and Upload it! <br /><br /> Best Regards <br /> <strong>Benjamin "
+"Zekavica<strong>"
+msgstr ""
+"<h2>Zdravo</h2><br />Puno Hvala za installation<br /><br /> Sa Pozdravom "
+"<br /> <strong>Benjamin Zekavica<strong>"
+
+#: easy-svg.php:201
+msgid "Version Number"
+msgstr "Versionsbroj"
 
 #. Plugin Name of the plugin/theme
 msgid "Easy SVG Support"
@@ -43,8 +57,8 @@ msgid "https://wordpress.org/plugins/easy-svg/"
 msgstr "https://wordpress.org/plugins/easy-svg/"
 
 #. Description of the plugin/theme
-msgid "Add SVG Support for WordPress"
-msgstr "Sada WordPress raumi i SVG"
+msgid "Add SVG Support for WordPress."
+msgstr "SVG Podrška za WordPress."
 
 #. Author of the plugin/theme
 msgid "Benjamin Zekavica"
