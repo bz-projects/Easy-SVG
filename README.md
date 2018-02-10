@@ -1,6 +1,6 @@
-# WordPress-Plugin-Easy-SVG-Support
-EASY SVG Support is a Plugin which allows you to upload SVG Files into your Media library.
-This plugin was created for persons, who don’t need much options for SVG.
+# WordPress Easy SVG Support Version 2.0.1 
 
+Du möchtest endlich in WordPress SVG Dateien hochladen und einbinden? Dann lade dir jetzt mein Plugin herunter. 
 
-This Version is only for WordPress.org
+Hier geht es zur WordPress.org Page:(Auto Updates)  
+https://wordpress.org/plugins/easy-svg/ 
