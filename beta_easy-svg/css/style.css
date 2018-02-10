@@ -1,0 +1,30 @@
+/*
+Plugin Name: Easy SVG Support 
+Description: Add SVG Support for WordPress.
+Version:     2.0
+Author:      Benjamin Zekavica
+
+Copyright by: 
+(c) 2017 - 2018 by Benjamin Zekavica. All rights reserved. 
+
+Imprint: 
+Benjamin Zekavica
+Oranienstraße 12
+52066 Aachen 
+
+E-Mail: info@benjamin-zekavica.de
+Web: www.benjamin-zekavica.de
+
+I don't give support by Mail. Please write in the 
+community forum for questions and problems.  
+
+*/
+
+
+/* Display the SVG on table columns */ 
+
+table.media .column-title .media-icon img[src*='.svg']{
+	 width: 100%;	
+	 height: auto;
+}
+

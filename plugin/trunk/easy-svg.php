@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support 
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     1.2
+Version:     2.0
 Author:      Benjamin Zekavica
 Author URI:  http://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -90,6 +90,7 @@ function esw_upload_check($checked, $file, $filename, $mimes){
 add_filter('wp_check_filetype_and_ext', 'esw_upload_check', 10, 4);
 
 
+
 /* ======================================== 
    Register activation hook. 
    ======================================== */
@@ -138,7 +139,7 @@ function esw_admin_notice_example_notice(){
     				     <?php _e( 'Kind Regards', 'easy-svg' ); ?>
     				     <br />
     				    <strong>
-    				      Benjamin Zekavica
+    				     Benjamin Zekavica
     				    </strong>
 		    	   </p>
         </div>
@@ -177,177 +178,65 @@ function esw_admin_notice_example_notice(){
     endif;
 
 
+
+  /* ======================================== 
+      Add WordPress Widget 
+     =======================================  */ 
+
+
+    add_action('wp_dashboard_setup', 'esw_dashboard_widget');
+   
+    function esw_dashboard_widget() {
+      global $wp_meta_boxes;
+       
+      wp_add_dashboard_widget('custom_help_widget', 'Easy SVG Support', 'esw_support_dashbord_widget_text');
+    }
+       
+
+    function esw_support_dashbord_widget_text() {
+
+      _e( '<h2>Welcome to EASY SVG!</h2><br /> Thank you for your installtion of my custom plugin! Do you want to Upload SVG Files? Than go to the Media Libary and Upload it! :) <br /><br /> Best Regards <br /> <strong>Benjamin Zekavica<strong>', 'easy-svg' );
+      echo "<br /><br />";
+
+      _e( 'Version Number', 'easy-svg' ); 
+      echo "&nbsp;2.0";
+   
+    }
+
+
 /* ======================================== 
-   SVG Add Javascript to Backend  
+    Display SVG Files in Backend 
    =======================================  */ 
 
-  add_action('wp_AJAX_svg_get_attachment_url', 'get_attachment_url_media_library');
+
+   // Add JavaScipt to Backend 
 
 
-/* ====================================================
-	Writing the function of the add_action hook 
-   =================================================== */
-
-function get_attachment_url_media_library(){
-
-    $url = '';
-    $attachmentID = isset($_REQUEST['attachmentID']) ? $_REQUEST['attachmentID'] : '';
-
-        /* ====================================================
-      		Ask the ID and get the ID 
-       	   ==================================================== */
-
-	    if($attachmentID){
-	        $url = wp_get_attachment_url($attachmentID);
-	    }
-
-	   /* ====================================================
-      		Echo the ID into the backend 
-       	  ==================================================== */    
-
-    	echo $url;
-
-       /* ====================================================
-      		Die the function
-       	  ==================================================== */    
-
-    die();
-}
-
-
-/* ====================================================
-	Enque Javascript
-   =================================================== */
-
-add_action( 'admin_enqueue_scripts', 'esw_enque_scripts' );
-
-function esw_enque_scripts($hook) {
-    if( 'index.php' != $hook ) {
-   	
-   	/* ====================================================
-		  Only applies to dashboard panel
-	  ==================================================== */ 
-	  
-	  return;
-
+    function esw_add_javascript_for_backend() {
+        wp_enqueue_style( 'esw_echo_svg_css', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), '1.0' );
+        wp_enqueue_script( 'esw_echo_svg_js', plugin_dir_url( __FILE__ ) . 'js/scripts.js', array(), '1.0' );
     }
-        
-	wp_enqueue_script( 'ajax-script', plugins_url( '/js/scripts.js', __FILE__ ), array('jquery') );
 
- 	/* ====================================================
-  		in JavaScript, object properties are accessed as 
-  		ajax_object.ajax_url, ajax_object.we_value
-		==================================================== */ 
-
-		wp_localize_script( 'ajax-script', 'ajax_object',
-		    array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 
-		    	   'we_value' => 1234 
-		    ) 
-		);
-}
-
-  /* ====================================================
-	    Add Ajax Action
-	   ==================================================== */ 
-	
-   add_action( 'wp_ajax_my_action', 'esw_action' );
-
-   
- /*  ====================================================
-	   Define the function
-	  ==================================================== */ 
-   
- 
-	function esw_action() {
-  		global $wpdb;
-  		$whatever = intval( $_POST['whatever'] );
-  		$whatever += 10;
-  		    echo $whatever;
-  		wp_die();
-	}
+    add_action( 'admin_enqueue_scripts', 'esw_add_javascript_for_backend' );
 
 
- /*  ====================================================
-     Options Menu 
-   ==================================================== */ 
-
-  add_action("admin_menu", "esw_options_menu");
+   // Echo    
 
 
- /* ============================
-      Create Options Page
-    ============================ */ 
+    add_action('wp_AJAX_svg_get_attachment_url', 'esw_display_svg_files_backend');
 
-  function esw_options_menu() {
+   // Define the function
 
-    // Define the menu 
+   function esw_display_svg_files_backend(){
 
-      $menu = add_menu_page( 
+      $url = '';
 
-            // Add Translation strings and different function names
+      $attachmentID = isset($_REQUEST['attachmentID']) ? $_REQUEST['attachmentID'] : '';
+      if($attachmentID){
+          $url = wp_get_attachment_url($attachmentID);
+      }
 
-            __( 'SVG Options Page', 'easy-svg' ),
-            __( 'SVG Options', 'easy-svg' ),
- 
-            
-            //  Roles and function namens 
-            //  @param https://developer.wordpress.org/reference/functions/add_menu_page/ 
+      echo $url;
 
-            'administrator',
-            'easy_svg_options',
-            'esw_options_menu_page',
-            'dashicons-svg',
-             80 
-      );
-
+      die();
   }
-
-
- /* ============================
-      Add Admin Styles 
-    ============================ */ 
-
-    add_action( 'admin_print_styles' . $menu, 'easy_svg_options' );
-    
-    // Add Hook for Styling with function name 
-
-    add_action('admin_head', 'esw_custom_favicon');
-
-
-    // Define function and add css via echo 
-
-    function esw_custom_favicon() {
-
-        // Echo the css 
-
-        echo '
-            <style>
-
-            /*  Define the dashicon lable */
-
-              .dashicons-svg{
-                  background-image: url("'.plugins_url().'/easy-svg/img/icon.png");
-                  background-repeat: no-repeat;
-                  background-position: center; 
-                  background-size: 72%;
-                  transiton: all .3s; 
-                  -webkit-transiton: all .3s; 
-              }
-
-              /*  Options Page Lable in Orange */
-
-             .wp-badge.svg-support-lable {
-                  background: url("'.plugins_url().'/easy-svg/img/backend-icon-lable.png") center 25px no-repeat #e57d31;
-                  background-size: 6em;
-                  padding-right: 1em;
-                  padding-left: 1em;
-              }
-
-            </style>
-        ';
-    }
-
-  
-/* ============================
-     Options Page Markup 
-   ============================ */ 

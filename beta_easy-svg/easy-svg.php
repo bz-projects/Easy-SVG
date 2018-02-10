@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support 
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     1.2
+Version:     2.0
 Author:      Benjamin Zekavica
 Author URI:  http://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -90,6 +90,7 @@ function esw_upload_check($checked, $file, $filename, $mimes){
 add_filter('wp_check_filetype_and_ext', 'esw_upload_check', 10, 4);
 
 
+
 /* ======================================== 
    Register activation hook. 
    ======================================== */
@@ -131,20 +132,14 @@ function esw_admin_notice_example_notice(){
         <div class="updated notice is-dismissible">
             <p>
     				  <strong>
-    				  	<?php
-                     _e( 'Thank you for using this plugin!' , 'easy-svg' ) ; 
-                  ?> 
+    				  	<?php _e( 'Thank you for using this plugin!' , 'easy-svg' ) ; ?> 
     				  </strong><br />
-    				    <?php
-                   _e( 'Go now to the Media Libary and upload your SVG Files.' , 'easy-svg' ); 
-                  ?> 
+    				    <?php _e( 'Go now to the Media Libary and upload your SVG Files.' , 'easy-svg' ); ?> 
     				     <br /><br />
-    				     <?php 
-                    _e( 'Kind Regards', 'easy-svg' );
-                  ?>
+    				     <?php _e( 'Kind Regards', 'easy-svg' ); ?>
     				     <br />
     				    <strong>
-    				      Benjamin Zekavica
+    				     Benjamin Zekavica
     				    </strong>
 		    	   </p>
         </div>
@@ -183,246 +178,65 @@ function esw_admin_notice_example_notice(){
     endif;
 
 
+
+  /* ======================================== 
+      Add WordPress Widget 
+     =======================================  */ 
+
+
+    add_action('wp_dashboard_setup', 'esw_dashboard_widget');
+   
+    function esw_dashboard_widget() {
+      global $wp_meta_boxes;
+       
+      wp_add_dashboard_widget('custom_help_widget', 'Easy SVG Support', 'esw_support_dashbord_widget_text');
+    }
+       
+
+    function esw_support_dashbord_widget_text() {
+
+      _e( '<h2>Welcome to EASY SVG!</h2><br /> Thank you for your installtion of my custom plugin! Do you want to Upload SVG Files? Than go to the Media Libary and Upload it! :) <br /><br /> Best Regards <br /> <strong>Benjamin Zekavica<strong>', 'easy-svg' );
+      echo "<br /><br />";
+
+      _e( 'Version Number', 'easy-svg' ); 
+      echo "&nbsp;2.0";
+   
+    }
+
+
 /* ======================================== 
-   SVG Add Javascript to Backend  
+    Display SVG Files in Backend 
    =======================================  */ 
 
-  add_action('wp_AJAX_svg_get_attachment_url', 'get_attachment_url_media_library');
+
+   // Add JavaScipt to Backend 
 
 
-/* ====================================================
-	Writing the function of the add_action hook 
-   =================================================== */
-
-function get_attachment_url_media_library(){
-
-    $url = '';
-    $attachmentID = isset($_REQUEST['attachmentID']) ? $_REQUEST['attachmentID'] : '';
-
-        /* ====================================================
-      		Ask the ID and get the ID 
-       	   ==================================================== */
-
-	    if($attachmentID){
-	        $url = wp_get_attachment_url($attachmentID);
-	    }
-
-	   /* ====================================================
-      		Echo the ID into the backend 
-       	  ==================================================== */    
-
-    	echo $url;
-
-       /* ====================================================
-      		Die the function
-       	  ==================================================== */    
-
-    die();
-}
-
-
-/* ====================================================
-	Enque Javascript
-   =================================================== */
-
-add_action( 'admin_enqueue_scripts', 'esw_enque_scripts' );
-
-function esw_enque_scripts($hook) {
-    if( 'index.php' != $hook ) {
-   	
-   	/* ====================================================
-		  Only applies to dashboard panel
-	  ==================================================== */ 
-	  
-	  return;
-
-    }
-        
-	wp_enqueue_script( 'ajax-script', plugins_url( '/js/scripts.js', __FILE__ ), array('jquery') );
-
- 	/* ====================================================
-  		in JavaScript, object properties are accessed as 
-  		ajax_object.ajax_url, ajax_object.we_value
-		==================================================== */ 
-
-		wp_localize_script( 'ajax-script', 'ajax_object',
-		    array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 
-		    	   'we_value' => 1234 
-		    ) 
-		);
-}
-
-  /* ====================================================
-	    Add Ajax Action
-	   ==================================================== */ 
-	
-   add_action( 'wp_ajax_my_action', 'esw_action' );
-
-   
- /*  ====================================================
-	   Define the function
-	  ==================================================== */ 
-   
- 
-	function esw_action() {
-  		global $wpdb;
-  		$whatever = intval( $_POST['whatever'] );
-  		$whatever += 10;
-  		    echo $whatever;
-  		wp_die();
-	}
-
-
- /*  ====================================================
-     Options Menu 
-   ==================================================== */ 
-
-  add_action("admin_menu", "esw_options_menu");
-
-
- /* ============================
-      Create Options Page
-    ============================ */ 
-
-  function esw_options_menu() {
-
-      $menu = add_menu_page( 
-
-          // Add Translation strings and different function names
-
-           _e('SVG Options', 'easy-svg'),
-
-
-          // Roles and function namens
-
-           'administrator',
-           'easy-svg-support',
-           'svg_settings', 
-           'dashicons-svg', 77
-      );
-
-   }
-
-
- /* ============================
-      Add Admin Styles 
-    ============================ */ 
-
-    add_action( 'admin_print_styles' . $menu, 'wp_esw_uploadlimit' );
-    
-    // Add Hook for Styling with function name 
-
-    add_action('admin_head', 'esw_custom_favicon');
-
-
-    // Define function and add css via echo 
-
-    function esw_custom_favicon() {
-
-        // Echo the css 
-
-        echo '
-            <style>
-
-            /*  Define the dashicon lable */
-
-              .dashicons-svg{
-                  background-image: url("'.plugins_url().'/easy-svg/img/icon.png");
-                  background-repeat: no-repeat;
-                  background-position: center; 
-                  background-size: 72%;
-                  transiton: all .3s; 
-                  -webkit-transiton: all .3s; 
-              }
-
-              /*  Options Page Lable in Orange */
-
-             .wp-badge.svg-support-lable {
-                  background: url("'.plugins_url().'/easy-svg/img/backend-icon-lable.png") center 25px no-repeat #e57d31;
-                  background-size: 6em;
-                  padding-right: 1em;
-                  padding-left: 1em;
-              }
-
-            </style>
-        ';
+    function esw_add_javascript_for_backend() {
+        wp_enqueue_style( 'esw_echo_svg_css', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), '1.0' );
+        wp_enqueue_script( 'esw_echo_svg_js', plugin_dir_url( __FILE__ ) . 'js/scripts.js', array(), '1.0' );
     }
 
-  
-/* ============================
-     Options Page Markup 
-   ============================ */ 
+    add_action( 'admin_enqueue_scripts', 'esw_add_javascript_for_backend' );
 
 
-function svg_settings() {  ?>
+   // Echo    
 
-    <div class="wrap about-wrap full-width-layout">
 
-      <!-- Add Header Section  -->
+    add_action('wp_AJAX_svg_get_attachment_url', 'esw_display_svg_files_backend');
 
-        <h1>
-           <?php _e('Welcome to Easy SVG Support for WordPress' , 'easy-svg'); ?>
-        </h1>
+   // Define the function
 
-        <p class="about-text">
-          <?php
-           _e('WordPress Easy SVG Plugin was created for you! Easy to install, easy to optimize, easy to config all SVG uploads. Our big feature is to look your SVG File in the Media Libary. Here on the optionspage you can add more uploadlimit size. Best Regards Benjamin Zekavica.' , 'easy-svg'); ?>
-        </p>
+   function esw_display_svg_files_backend(){
 
-        <div class="wp-badge svg-support-lable">
-            <?php _e('Easy SVG Support Version 2.0', 'easy-svg'); ?><br />
-        </div>
+      $url = '';
 
-        <!-- Add options for memory -->
+      $attachmentID = isset($_REQUEST['attachmentID']) ? $_REQUEST['attachmentID'] : '';
+      if($attachmentID){
+          $url = wp_get_attachment_url($attachmentID);
+      }
 
-              
-               <form method="post">
-                  <?php
-                      settings_fields("header_section");
-                      do_settings_sections("manage_options"); 
-                      wp_nonce_field('upload_max_file_size_action', 'upload_max_file_size_field');
-                      submit_button();
-                  ?>
-                </form>
+      echo $url;
 
-                <?php
-                  /**
-                   * form end 
-                   * @since 1.2
-                   */
-                  //submit form start 
-                  if (!isset($_POST['upload_max_file_size_field']) || !wp_verify_nonce($_POST['upload_max_file_size_field'], 'upload_max_file_size_action')) {
-                      echo 'Sorry, your nonce did not verify.';
-                      exit;
-                  } else {
-                      $number = sanitize_text_field($_POST['number']);
-                      update_option('max_file_size', $number);
-                  }
-                }
-                //filter
-                add_filter('upload_size_limit', 'upload_max_increase_upload');
-
-                function upload_max_increase_upload() {
-                  return get_option('max_file_size');
-                }
-                function max_display_options() {
-                  //section name, display name, callback to print description of section, page to which section is attached.
-                  add_settings_section("header_section", "Increase Upload Maximum File Size", "max_display_header_options_content", "manage_options");
-                  add_settings_field("header_logo", "Enter Value In Number", "max_display_logo_form_element", "manage_options", "header_section");
-                  register_setting("header_section", "number");
-                }
-
-                function max_display_header_options_content() {
-                  echo "";
-                }
-
-                function max_display_logo_form_element() {
-                   printf(
-                          '<input type="text" id="number" name="number" value="%s" />',
-                          (null!==get_option('max_file_size') ) ? esc_attr( get_option('max_file_size')) : ''
-                      );
-                }
-                add_action("admin_init", "max_display_options");
-              ?>
-
-        </div>
+      die();
+  }
