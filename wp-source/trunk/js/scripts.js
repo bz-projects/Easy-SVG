@@ -1,7 +1,7 @@
 /*
 Plugin Name: Easy SVG Support 
 Description: Add SVG Support for WordPress.
-Version:     2.0.2
+Version:     2.0.3
 Author:      Benjamin Zekavica
 
 Copyright by: 
