@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy SVG Support\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-06 17:20+0000\n"
+"PO-Revision-Date: 2018-02-06 18:55+0100\n"
+"Language-Team: German\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Last-Translator: \n"
+"Language: en\n"
+
+#: easy-svg.php:106
+msgid "Thank you for using this plugin!"
+msgstr ""
+
+#: easy-svg.php:108
+msgid "Go now to the Media Libary and upload your SVG Files."
+msgstr ""
+
+#: easy-svg.php:110
+msgid "Kind Regards"
+msgstr ""
+
+#. Name of the plugin
+msgid "Easy SVG Support"
+msgstr ""
+
+#. Description of the plugin
+msgid "Add SVG Support for WordPress"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/easy-svg/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Benjamin Zekavica"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://www.benjamin-zekavica.de"
+msgstr ""
