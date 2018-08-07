@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     2.2
+Version:     2.3
 Author:      Benjamin Zekavica
 Author URI:  http://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -132,7 +132,8 @@ function esw_admin_notice_example_notice(){
         <div class="updated notice is-dismissible">
             <p>
     				  <strong>
-    				  	<?php _e( 'Thank you for using this plugin!' , 'easy-svg' ) ; ?>
+                        <?php _e('Welcome to Version 2.3! New Update is now available. More features and full Gutenberg Support! Enjoy. Read the <a target="_blank" href="https://wordpress.org/plugins/easy-svg/#developers">Changelog</a>' , 'easy-svg' ) ; ?> <br /><br />
+    				  	<?php _e('Thank you for using this plugin!' , 'easy-svg' ) ; ?>
     				  </strong><br />
     				    <?php _e( 'Go now to the Media Libary and upload your SVG Files.' , 'easy-svg' ); ?>
     				     <br /><br />
@@ -192,18 +193,18 @@ function esw_admin_notice_example_notice(){
 
     function esw_dashboard_widget() {
       global $wp_meta_boxes;
-
       wp_add_dashboard_widget('custom_help_widget', 'Easy SVG Support', 'esw_support_dashbord_widget_text');
     }
 
 
     function esw_support_dashbord_widget_text() {
+      _e('Welcome to Version 2.3! New Update is now available. More features and full Gutenberg Support! Enjoy. Read the <a target="_blank" href="https://wordpress.org/plugins/easy-svg/#developers">Changelog</a>' , 'easy-svg' ) ;
 
       _e( '<h2>Welcome to EASY SVG!</h2><br /> Thank you for your installtion of my custom plugin! Do you want to Upload SVG Files? Than go to the Media Libary and Upload it! <br /><br /> Best Regards <br /> <strong>Benjamin Zekavica<strong>', 'easy-svg' );
       echo "<br /><br />";
 
       _e( 'Version Number', 'easy-svg' );
-      echo "&nbsp;2.2";
+      echo "&nbsp;2.3";
 
     }
 
@@ -221,14 +222,12 @@ function esw_admin_notice_example_notice(){
 
     function esw_add_javascript_for_backend() {
         wp_enqueue_style( 'esw_echo_svg_css', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), '1.0' );
-        wp_enqueue_script( 'esw_echo_svg_js', plugin_dir_url( __FILE__ ) . 'js/scripts.js', array('jquery'), '1.0' );
     }
 
     add_action( 'admin_enqueue_scripts', 'esw_add_javascript_for_backend' );
 
 
    // Echo
-
 
     add_action('wp_AJAX_svg_get_attachment_url', 'esw_display_svg_files_backend');
 
@@ -248,3 +247,42 @@ function esw_admin_notice_example_notice(){
 
       die();
   }
+
+
+// Media Libary  Display SVG
+
+function esw_display_svg_media($response, $attachment, $meta){
+    if($response['type'] === 'image' && $response['subtype'] === 'svg+xml' && class_exists('SimpleXMLElement')){
+        try {
+            $path = get_attached_file($attachment->ID);
+            if(@file_exists($path)){
+                $svg = new SimpleXMLElement(@file_get_contents($path));
+                $src = $response['url'];
+                $width = (int) $svg['width'];
+                $height = (int) $svg['height'];
+
+                // Media Gallery 
+                $response['image'] = compact( 'src', 'width', 'height' );
+                $response['thumb'] = compact( 'src', 'width', 'height' );
+
+                // Single Details of Image 
+                $response['sizes']['full'] = array(
+                    'height'        => $height,
+                    'width'         => $width,
+                    'url'           => $src,
+                    'orientation'   => $height > $width ? 'portrait' : 'landscape',
+                );
+            }
+        }
+        catch(Exception $e){}
+    }
+
+    return $response;
+}
+add_filter('wp_prepare_attachment_for_js', 'esw_display_svg_media', 10, 3);
+
+
+
+// Load Template - Gutenberg Block
+
+require_once('easysvg-gutenberg.php');
