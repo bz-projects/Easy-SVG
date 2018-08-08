@@ -65,17 +65,17 @@ function esw_upload_check($checked, $file, $filename, $mimes){
 
  if(!$checked['type']){
 
-  	 $esw_upload_check = wp_check_filetype( $filename, $mimes );
-  	 $ext = $esw_upload_check['ext'];
-  	 $type = $esw_upload_check['type'];
-  	 $proper_filename = $filename;
+     $esw_upload_check = wp_check_filetype( $filename, $mimes );
+     $ext = $esw_upload_check['ext'];
+     $type = $esw_upload_check['type'];
+     $proper_filename = $filename;
 
     /* ========================================
         Upload checking filename
        ======================================== */
 
      if($type && 0 === strpos($type, 'image/') && $ext !== 'svg'){
-      	$ext = $type = false;
+        $ext = $type = false;
      }
 
      // Check the filename
@@ -131,18 +131,18 @@ function esw_admin_notice_example_notice(){
 
         <div class="updated notice is-dismissible">
             <p>
-    				  <strong>
+              <strong>
                         <?php _e('Welcome to Version 2.3! New Update is now available. More features and full Gutenberg Support! Enjoy. Read the <a target="_blank" href="https://wordpress.org/plugins/easy-svg/#developers">Changelog</a>' , 'easy-svg' ) ; ?> <br /><br />
-    				  	<?php _e('Thank you for using this plugin!' , 'easy-svg' ) ; ?>
-    				  </strong><br />
-    				    <?php _e( 'Go now to the Media Libary and upload your SVG Files.' , 'easy-svg' ); ?>
-    				     <br /><br />
-    				     <?php _e( 'Kind Regards', 'easy-svg' ); ?>
-    				     <br />
-    				    <strong>
-    				     Benjamin Zekavica
-    				    </strong>
-		    	   </p>
+                <?php _e('Thank you for using this plugin!' , 'easy-svg' ) ; ?>
+              </strong><br />
+                <?php _e( 'Go now to the Media Libary and upload your SVG Files.' , 'easy-svg' ); ?>
+                 <br /><br />
+                 <?php _e( 'Kind Regards', 'easy-svg' ); ?>
+                 <br />
+                <strong>
+                 Benjamin Zekavica
+                </strong>
+             </p>
         </div>
 
         <?php
