@@ -1,33 +1,33 @@
 /*
-Plugin Name: Easy SVG Support
+Plugin Name: Easy SVG Support 
 Description: Add SVG Support for WordPress.
-Version:     2.2
+Version:     2.0.3
 Author:      Benjamin Zekavica
 
-Copyright by:
-(c) 2017 - 2018 by Benjamin Zekavica. All rights reserved.
+Copyright by: 
+(c) 2017 - 2018 by Benjamin Zekavica. All rights reserved. 
 
-Imprint:
+Imprint: 
 Benjamin Zekavica
 Oranienstraße 12
-52066 Aachen
+52066 Aachen 
 
 E-Mail: info@benjamin-zekavica.de
 Web: www.benjamin-zekavica.de
 
-I don't give support by Mail. Please write in the
-community forum for questions and problems.
+I don't give support by Mail. Please write in the 
+community forum for questions and problems.  
 
 */
 
 
-/* Add Function with AJAX to display the thumbnail */
+/* Add Function with AJAX to display the thumbnail */ 
 
 var observer = new MutationObserver(function(mutations){
 
   for (var i=0; i < mutations.length; i++){
     for (var j=0; j < mutations[i].addedNodes.length; j++){
-        element = $(mutations[i].addedNodes[j]);
+        element = $(mutations[i].addedNodes[j]); 
         if(element.attr('class')){
 
             elementClass = element.attr('class');
@@ -37,10 +37,10 @@ var observer = new MutationObserver(function(mutations){
                 if(attachmentPreview.length != 0){
 
                     if(attachmentPreview.attr('class').indexOf('subtype-svg+xml') != -1){
-
+                        
                         var handler = function(element){
 
-                            //do a WP AJAX call to get the URL
+                            //do a WP AJAX call to get the URL 
                             jQuery.AJAX({
 
                                 url: AJAXurl,
@@ -57,7 +57,7 @@ var observer = new MutationObserver(function(mutations){
                                 }
                             });
 
-                        }(element);
+                        }(element); 
 
                     }
                 }
