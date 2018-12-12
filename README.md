@@ -1,4 +1,5 @@
-# WordPress Easy SVG Support Version 2.4
+﻿# WordPress Easy SVG Support Version 2.4.1
+
 
 Du möchtest endlich in WordPress SVG Dateien hochladen und einbinden? Dann lade dir jetzt mein Plugin herunter. 
 

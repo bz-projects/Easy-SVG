@@ -7,7 +7,7 @@ Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, 
 Requires at least: 5.0
 Tested up to: 3.5
 Requires PHP: 7.0
-Stable tag: 2.4
+Stable tag: 2.4.1
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
