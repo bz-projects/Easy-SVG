@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support
 Plugin URI:  https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     2.4.1
+Version:     2.5
 Author:      Benjamin Zekavica
 Author URI:  http://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -83,92 +83,38 @@ function esw_upload_check($checked, $file, $filename, $mimes){
 add_filter('wp_check_filetype_and_ext', 'esw_upload_check', 10, 4);
 
 
-
-/*=========================================
-   Register activation hook.
-=========================================== */
-
-function esw_admin_notice_example_activation_hook() {
-    set_transient( 'esw-admin-notice-example', true, 5 );
-}
-register_activation_hook( __FILE__, 'esw_admin_notice_example_activation_hook' );
-
-
-/*=====================================
-   Admin Notice on Activation.
-=======================================*/
-
-function esw_admin_notice_example_notice(){
-    if( get_transient( 'esw-admin-notice-example' ) ){ ?>
-
-        <div class="updated notice is-dismissible">
-            <p>
-                <strong>
-                  <?php _e('Welcome to Version 2.3! New Update is now available. More features and full Gutenberg Support! Enjoy. Read the <a target="_blank" href="https://wordpress.org/plugins/easy-svg/#developers">Changelog</a>' , 'easy-svg' ) ; ?> 
-                </strong>
-            </p>
-            <p>
-                <strong>
-                  <?php _e('Thank you for using this plugin!' , 'easy-svg' ) ; ?>
-                  <?php _e( 'Go now to the Media Libary and upload your SVG Files.' , 'easy-svg' ); ?>
-                </strong>
-            </p>
-            <p>
-                <?php _e( 'Kind Regards', 'easy-svg' ); ?> <br />
-                <strong>
-                   Benjamin Zekavica
-                </strong>
-            </p>
-        </div>
-
-        <?php
-
-        delete_transient( 'esw-admin-notice-example' );
-    }
-}
-add_action('esw_welcome_message_active_plugin', 'esw_admin_notice_example_notice');
-
-
 /*========================================
     Load Text Domain for languages files
 =======================================  */
 
-    if(! function_exists( 'esw_multiligual_textdomain' ) ) {
-        function esw_multiligual_textdomain() {
-            load_plugin_textdomain( 'easy-svg' , false, dirname( plugin_basename( __FILE__ ) ).'/languages' );
-        }
-        add_action( 'plugins_loaded', 'esw_multiligual_textdomain' );
+if(! function_exists( 'esw_multiligual_textdomain' ) ) {
+    function esw_multiligual_textdomain() {
+        load_plugin_textdomain( 'easy-svg' , false, dirname( plugin_basename( __FILE__ ) ).'/languages' );
     }
+    add_action( 'plugins_loaded', 'esw_multiligual_textdomain' );
+}
 
 /* ========================================
     Display SVG Files in Backend
 =======================================  */
 
-    function esw_add_javascript_for_backend() {
-        wp_enqueue_style( 'esw_echo_svg_css', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), '1.0' );
+function esw_display_svg_files_backend(){
+
+    $url = '';
+    $attachmentID = isset($_REQUEST['attachmentID']) ? $_REQUEST['attachmentID'] : '';
+
+    if($attachmentID){
+        $url = wp_get_attachment_url($attachmentID);
     }
-    add_action( 'admin_enqueue_scripts', 'esw_add_javascript_for_backend' );
 
-
-    function esw_display_svg_files_backend(){
-
-        $url = '';
-        $attachmentID = isset($_REQUEST['attachmentID']) ? $_REQUEST['attachmentID'] : '';
-
-        if($attachmentID){
-            $url = wp_get_attachment_url($attachmentID);
-        }
-
-        echo $url;
-        die();
-    }
-    add_action('wp_AJAX_svg_get_attachment_url', 'esw_display_svg_files_backend');
-
+    echo $url;
+    die();
+}
+add_action('wp_AJAX_svg_get_attachment_url', 'esw_display_svg_files_backend');
 
 /* ========================================
      Media Libary  Display SVG
 =======================================  */
-
 
 function esw_display_svg_media($response, $attachment, $meta){
     if($response['type'] === 'image' && $response['subtype'] === 'svg+xml' && class_exists('SimpleXMLElement')){
@@ -197,3 +143,17 @@ function esw_display_svg_media($response, $attachment, $meta){
     return $response;
 }
 add_filter('wp_prepare_attachment_for_js', 'esw_display_svg_media', 10, 3);
+
+/* ========================================
+   Load CSS in Admin Header Styles
+=======================================  */
+
+function esw_svg_styles() {
+  echo '<style>
+            table.media .column-title .media-icon img[src*=".svg"]{
+                width: 100%;
+                height: auto;
+            }
+        </style>';
+}
+add_action('admin_head', 'esw_svg_styles');
