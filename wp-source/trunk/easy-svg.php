@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support
 Plugin URI:  https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     2.5
+Version:     2.5.1
 Author:      Benjamin Zekavica
 Author URI:  http://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -106,8 +106,8 @@ function esw_display_svg_files_backend(){
     if($attachmentID){
         $url = wp_get_attachment_url($attachmentID);
     }
-
     echo $url;
+    
     die();
 }
 add_action('wp_AJAX_svg_get_attachment_url', 'esw_display_svg_files_backend');
@@ -119,6 +119,7 @@ add_action('wp_AJAX_svg_get_attachment_url', 'esw_display_svg_files_backend');
 function esw_display_svg_media($response, $attachment, $meta){
     if($response['type'] === 'image' && $response['subtype'] === 'svg+xml' && class_exists('SimpleXMLElement')){
         try {
+            
             $path = get_attached_file($attachment->ID);
 
             if(@file_exists($path)){
