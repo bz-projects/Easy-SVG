@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support
 Plugin URI:  https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     2.5.1
+Version:     2.6
 Author:      Benjamin Zekavica
 Author URI:  http://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -74,7 +74,6 @@ function esw_upload_check($checked, $file, $filename, $mimes){
 
      // Check the filename
      $checked = compact('ext','type','proper_filename');
-
  }
 
  return $checked;
@@ -123,12 +122,12 @@ function esw_display_svg_media($response, $attachment, $meta){
             $path = get_attached_file($attachment->ID);
 
             if(@file_exists($path)){
-                $svg = new SimpleXMLElement(@file_get_contents($path));
-                $src = $response['url'];
-                $width = (int) $svg['width'];
-                $height = (int) $svg['height'];
-                $response['image'] = compact( 'src', 'width', 'height' );
-                $response['thumb'] = compact( 'src', 'width', 'height' );
+                $svg                = new SimpleXMLElement(@file_get_contents($path));
+                $src                = $response['url'];
+                $width              = (int) $svg['width'];
+                $height             = (int) $svg['height'];
+                $response['image']  = compact( 'src', 'width', 'height' );
+                $response['thumb']  = compact( 'src', 'width', 'height' );
 
                 $response['sizes']['full'] = array(
                     'height'        => $height,

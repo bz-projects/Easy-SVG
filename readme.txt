@@ -5,9 +5,9 @@ Contributors: Benjamin_Zekavica
 Donate link: https://www.paypal.me/benjaminzekavica
 Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
 Requires at least: 4.9
-Tested up to: 5.2.1
+Tested up to: 5.2.3
 Requires PHP: 7.0
-Stable tag: 2.5.1
+Stable tag: 2.6
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -66,6 +66,11 @@ https://github.com/BenjaminZekavica/WordPress-Easy-SVG
 
 
 == Changelog ==
+
+= 2.6: 21th of September, 2019 =
+
+* Add Support for WordPress 5.2.3
+* Fixes
 
 = 2.5.1: 12th of June, 2019 =
 
