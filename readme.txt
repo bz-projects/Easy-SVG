@@ -5,9 +5,9 @@ Contributors: Benjamin_Zekavica
 Donate link: https://www.paypal.me/benjaminzekavica
 Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
 Requires at least: 4.9
-Tested up to: 5.3.2
+Tested up to: 5.4.2
 Requires PHP: 7.0
-Stable tag: 2.7
+Stable tag: 2.8
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -58,7 +58,7 @@ One options panel, where you can customize your SVG Files and SVG Sprites.
 
 Please check out my repository on Github:
 
-https://github.com/BenjaminZekavica/WordPress-Easy-SVG
+https://github.com/bz-projects/Easy-SVG
 
 == Screenshots ==
 1. Easy SVG Support in Gutenberg
@@ -66,6 +66,12 @@ https://github.com/BenjaminZekavica/WordPress-Easy-SVG
 
 
 == Changelog ==
+
+= 2.8: 02th of July, 2020 =
+
+* Security Fixes
+* Updated Language files
+* Support for new WordPress version
 
 = 2.7: 24th of January, 2020 =
 
