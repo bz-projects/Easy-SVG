@@ -5,9 +5,9 @@ Contributors: Benjamin_Zekavica
 Donate link: https://www.paypal.me/benjaminzekavica
 Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
 Requires at least: 4.9
-Tested up to: 5.4.2
+Tested up to: 5.5.1
 Requires PHP: 7.0
-Stable tag: 2.8
+Stable tag: 2.9
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -39,14 +39,6 @@ info@benjamin-zekavica.de or you can ask your question in the forums section.
 3. Upload now your SVG Files.
 4. Go to the Page or ACF and choose your File and save changes.
 
-Remember: Please add into your theme this Code in CSS:
-
-
-img[src*='.svg']{
-    width: 100%;
-    height: auto;
-}
-
 
 == Frequently Asked Questions ==
 
@@ -66,6 +58,11 @@ https://github.com/bz-projects/Easy-SVG
 
 
 == Changelog ==
+
+= 2.9: 28th of October, 2020 =
+
+* Security Fixes
+* Support for new WordPress version
 
 = 2.8: 02th of July, 2020 =
 
