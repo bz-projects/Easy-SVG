@@ -5,9 +5,9 @@ Contributors: Benjamin_Zekavica
 Donate link: https://www.paypal.me/benjaminzekavica
 Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
 Requires at least: 4.9
-Tested up to: 5.5.1
+Tested up to: 5.6
 Requires PHP: 7.0
-Stable tag: 2.9
+Stable tag: 2.9.1
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -24,6 +24,8 @@ EASY SVG Support is a Plugin which allows you to upload SVG Files into your Medi
 * Uploading SVG Support for WordPress
 * Easy installation
 * Display SVG Files in the Media Libary
+* Updated for the new WordPress Gutenberg Editor
+* Support for PHP 8.0
 
 
 = Documentation & Support =
@@ -58,6 +60,12 @@ https://github.com/bz-projects/Easy-SVG
 
 
 == Changelog ==
+
+= 2.9.1: 28th of January, 2021 =
+
+* Add PHP 8.0 support
+* Support for new version of the Gutenberg Editor
+* Support for new WordPress version
 
 = 2.9: 28th of October, 2020 =
 
