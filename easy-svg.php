@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support
 Plugin URI:  https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     3.0.0
+Version:     3.1.0
 Author:      Benjamin Zekavica
 Author URI:  https://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -25,7 +25,7 @@ along with Easy SVG. If not, see license.txt .
 
 
 Copyright by:
-(c) 2017 - 2021 by Benjamin Zekavica. All rights reserved.
+© 2017 - 2021 by Benjamin Zekavica. All rights reserved.
 
 Imprint:
 Benjamin Zekavica
