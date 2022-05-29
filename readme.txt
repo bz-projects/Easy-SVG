@@ -84,7 +84,7 @@ Please check out my repository on Github:
 
 = 3.3.0: 29th of May, 2022 =
 
-* Support for new WordPress version 6.9
+* Support for new WordPress version 6.0
 * Support Gutenberg Version 
 * SVG Sanitize Files direcly 
 * Security Update
