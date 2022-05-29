@@ -1,14 +1,14 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy SVG Support\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-29 17:45+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"PO-Revision-Date: 2022-05-29 17:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100 >= 3 "
+"&& n%100<=10 ? 3 : n%100 >= 11 && n%100<=99 ? 4 : 5;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,24 +18,24 @@ msgstr ""
 
 #. Description of the plugin
 msgid "Add SVG Support for WordPress."
-msgstr ""
+msgstr " WordPress.أضف دعم SVG لبرنامج"
 
 #. Author of the plugin
 msgid "Benjamin Zekavica"
-msgstr ""
+msgstr "Benjamin Zekavica"
 
 #. Name of the plugin
 msgid "Easy SVG Support"
-msgstr ""
+msgstr "Easy SVG Support"
 
 #. URI of the plugin
 msgid "https://wordpress.org/plugins/easy-svg/"
-msgstr ""
+msgstr "https://wordpress.org/plugins/easy-svg/"
 
 #. Author URI of the plugin
 msgid "https://www.benjamin-zekavica.de"
-msgstr ""
+msgstr "https://www.benjamin-zekavica.de"
 
 #: easy-svg.php:102
 msgid "Sorry, please check your file"
-msgstr ""
+msgstr " الخاص بك عذرا ، يرجى التحقق من الملف"

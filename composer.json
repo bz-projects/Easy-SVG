@@ -1,0 +1,17 @@
+{
+    "name": "benjaminzekavica/easy-svg",
+    "description": "Easy SVG for WordPress",
+    "autoload": {
+        "psr-4": {
+            "Benjaminzekavica\\EasySvg\\": "easy-svg.php"
+        }
+    },
+    "authors": [
+        {
+            "name": "Benjamin Zekavica"
+        }
+    ],
+    "require": {
+        "enshrined/svg-sanitize": "^0.15.4"
+    }
+}

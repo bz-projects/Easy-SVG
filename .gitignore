@@ -1,0 +1,4 @@
+composer.lock
+vendor
+git
+node_modules

@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support
 Plugin URI:  https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     3.2.0
+Version:     3.3.0
 Author:      Benjamin Zekavica
 Author URI:  https://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -38,6 +38,76 @@ community forum for questions and problems.
 */
 
 if ( !defined( 'ABSPATH' ) ) exit;
+
+// COMPOSER PACKAGES
+require( __DIR__ .'/vendor/autoload.php' );
+
+// INIT
+use enshrined\svgSanitize\Sanitizer;
+$sanitizer = new Sanitizer();
+
+
+/* =====================================
+*   Sanitizer SVG 
+*
+*   @filter-hook esw_svg_allowed_tags  SVG Tags
+*   @filter-hook esw_svg_allowed_attributes  SVG Attributes
+===============================================*/
+
+// SVG TAGS
+class esw_svg_tags extends \enshrined\svgSanitize\data\AllowedTags {
+
+	public static function getTags() {
+		return apply_filters( 'esw_svg_allowed_tags', parent::getTags() );
+	}
+}
+
+// SVG Attributes
+class esw_svg_attributes extends \enshrined\svgSanitize\data\AllowedAttributes {
+	public static function getAttributes() {
+		return apply_filters( 'esw_svg_allowed_attributes', parent::getAttributes() );
+	}
+}
+
+// SVG FILE CHECKER
+function esw_svg_file_checker( $file ){
+
+	global $sanitizer;
+
+    $sanitizer->setAllowedTags( new esw_svg_tags() );
+	$sanitizer->setAllowedAttrs( new esw_svg_attributes() );
+
+	$unclean = file_get_contents( $file );
+
+    if ( $unclean === false ) {
+        return false;
+    }
+
+	$clean = $sanitizer->sanitize( $unclean );
+	if ( $clean === false ) {
+		return false;
+	}
+
+    // CLEAN FILE and add new content
+	file_put_contents( $file, $clean );
+
+	return true;
+}
+
+// Sanitizing SVG on Upload –> Remove virus
+function esw_svg_upload_filter_check_init( $upload ){
+
+	if ( $upload['type'] === 'image/svg+xml' ) {
+        if ( ! esw_svg_file_checker( $upload['tmp_name'] ) ) {
+            $upload['error'] = __( "Sorry, please check your file", 'easy-svg' );
+        }
+    }
+
+	return $upload;
+}
+add_filter( 'wp_handle_upload_prefilter', 'esw_svg_upload_filter_check_init' );
+
+
 
 /* =====================================
 *   Upload SVG Support
