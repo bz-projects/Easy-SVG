@@ -1,12 +1,12 @@
-﻿=== Easy SVG Support ===
+=== Easy SVG Support ===
 Author URI: https://www.benjamin-zekavica.de
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Contributors: Benjamin_Zekavica
 Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
 Requires at least: 4.9
-Tested up to: 6.0
+Tested up to: 6.2
 Requires PHP: 7.0
-Stable tag: 3.3.0
+Stable tag: 3.3.1
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -26,7 +26,7 @@ EASY SVG Support is a Plugin which allows you to upload SVG Files into your Medi
 * SVG Sanitize Files direcly 
 * SVG Sanitize – Custom Hooks for Tags and Attributes
 * Updated for the new WordPress Gutenberg Editor
-* Support for PHP 8.0
+* Support for PHP 8.2
 
 
 = Documentation & Support =
@@ -81,6 +81,10 @@ Please check out my repository on Github:
 
 
 == Changelog ==
+
+= 3.3.1: 13th of March, 2023 = 
+* Support for new WordPress version 6.2
+* Support Gutenberg Version 
 
 = 3.3.0: 29th of May, 2022 =
 
