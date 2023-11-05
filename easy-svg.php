@@ -3,7 +3,7 @@
 Plugin Name: Easy SVG Support
 Plugin URI:  https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     3.4
+Version:     3.5
 Author:      Benjamin Zekavica
 Author URI:  https://www.benjamin-zekavica.de
 Text Domain: easy-svg
@@ -23,9 +23,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Easy SVG. If not, see license.txt .
 
-
 Copyright by:
-© 2017 - 2023 by Benjamin Zekavica. All rights reserved.
+© 2017 - 2024 by Benjamin Zekavica. All rights reserved.
 
 Imprint:
 Benjamin Zekavica
@@ -39,10 +38,15 @@ community forum for questions and problems.
 
 if ( !defined( 'ABSPATH' ) ) exit;
 
-// COMPOSER PACKAGES
-require( __DIR__ .'/vendor/autoload.php' );
+// Helpers
+$composer_package =  __DIR__ .'/vendor/autoload.php'; 
 
-// INIT
+// Composer
+if( file_exists( $composer_package ) ) {
+    require( $composer_package );
+}
+
+// SVG Sanitizer
 use enshrined\svgSanitize\Sanitizer;
 $sanitizer = new Sanitizer();
 
