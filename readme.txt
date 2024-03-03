@@ -1,4 +1,4 @@
-﻿=== Easy SVG Support ===
+=== Easy SVG Support ===
 Author URI: https://www.benjamin-zekavica.de
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Contributors: Benjamin_Zekavica
@@ -82,7 +82,7 @@ Please check out my repository on Github:
 
 == Changelog ==
 
-= 3.6: 3th of March, 2024 =
+= 3.6: 3rd of March, 2024 =
 * Support for new WordPress version 6.5
 * Support Gutenberg Version
 * Updated SVG Sanitizer Package
