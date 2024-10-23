@@ -3,10 +3,10 @@ Author URI: https://www.benjamin-zekavica.de
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Contributors: Benjamin_Zekavica
 Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
-Requires at least: 4.9
-Tested up to: 6.6
-Requires PHP: 7.4
-Stable tag: 3.7
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 8.0
+Stable tag: 3.8
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -81,6 +81,15 @@ Please check out my repository on Github:
 
 
 == Changelog ==
+
+= 3.8: 21th of October, 2024 =
+* Security Fix for Image Uploader | Props to Francesco Carlucci & Wordfence
+* Support for new WordPress version 6.7
+* Support Gutenberg Version
+* Updated SVG Sanitizer Package
+* Remove Support for 7.4 - Now it's imporant to use 8.0
+* Remove WP Support for 5x - Now it's imporant to use 6.0
+* Code Optimizing
 
 = 3.7: 21th of June, 2024 =
 * Support for new WordPress version 6.6
