@@ -3,7 +3,7 @@
         'name' => 'benjaminzekavica/easy-svg',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '72654b88490c61e5be8856fc2ce9a8c4ee3994a4',
+        'reference' => '11b4989e39bba0eaad42b54f7efc173cd3f3180f',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'benjaminzekavica/easy-svg' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '72654b88490c61e5be8856fc2ce9a8c4ee3994a4',
+            'reference' => '11b4989e39bba0eaad42b54f7efc173cd3f3180f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
