@@ -82,7 +82,7 @@ Please check out my repository on Github:
 
 == Changelog ==
 
-= 3.8: 21th of October, 2024 =
+= 3.8: 4th of November, 2024 =
 * Security Fix for Image Uploader | Props to Francesco Carlucci & Wordfence
 * Support for new WordPress version 6.7
 * Support Gutenberg Version
