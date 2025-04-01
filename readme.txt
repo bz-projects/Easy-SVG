@@ -2,12 +2,12 @@
 Author URI: https://www.benjamin-zekavica.de
 Plugin URI: https://wordpress.org/plugins/easy-svg/
 Contributors: Benjamin_Zekavica
-Tags: svg, svg support, upload svg, svg media, easy upload, easy-svg, easy svg, files, upload, icons, upload limit
+Tags: svg, svg support, upload svg, svg media, easy-svg
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 8.0
-Stable tag: 3.8
-License: GNU Version 2 or Any Later Version
+Stable tag: 3.9
+License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 This Plugin allows you to upload SVG Files into your Media library.
@@ -81,6 +81,13 @@ Please check out my repository on Github:
 
 
 == Changelog ==
+
+= 3.9: 1st of April, 2025 =
+* Support for new WordPress version 6.8
+* Support Gutenberg Version
+* Updated SVG Sanitizer Package
+* Updated License
+* Code Optimizing
 
 = 3.8: 4th of November, 2024 =
 * Security Fix for Image Uploader | Props to Francesco Carlucci & Wordfence

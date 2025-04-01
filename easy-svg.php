@@ -3,18 +3,18 @@
 Plugin Name: Easy SVG Support
 Plugin URI:  https://wordpress.org/plugins/easy-svg/
 Description: Add SVG Support for WordPress.
-Version:     3.8
+Version:     3.9
 Author:      Benjamin Zekavica
 Requires PHP: 8.0
 Requires at least: 6.0
 Author URI:  https://www.benjamin-zekavica.de
 Text Domain: easy-svg
 Domain Path: /languages
-License:     GPL2
+License:     GPL3
 
 Easy SVG is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
+the Free Software Foundation, either version 3 of the License, or
 any later version.
 
 Easy SVG is distributed in the hope that it will be useful,
