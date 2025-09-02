@@ -6,7 +6,7 @@ Tags: svg, svg support, upload svg, svg media, easy-svg
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 8.0
-Stable tag: 3.9
+Stable tag: 4.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -81,6 +81,10 @@ Please check out my repository on Github:
 
 
 == Changelog ==
+= 4.0: September 2, 2025 =
+* Support for new WordPress version
+* Support Gutenberg Version
+* Updated SVG Sanitizer Package
 
 = 3.9: 1st of April, 2025 =
 * Support for new WordPress version 6.8
