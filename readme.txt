@@ -6,7 +6,7 @@ Tags: svg, svg support, upload svg, svg media, easy-svg
 Requires at least: 6.0
 Tested up to: 7.2
 Requires PHP: 8.0
-Stable tag: 4.2
+Stable tag: 4.2.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -81,6 +81,9 @@ Please check out my repository on Github:
 
 
 == Changelog ==
+= 4.2.1: October 29, 2026 =
+* Maintenance release so the 4.2 security update reaches every site through the WordPress update check. No code changes.
+
 = 4.2: October 29, 2026 =
 * Security: Updated the SVG sanitizer package (enshrined/svg-sanitize) to 1.1.1. It fixes a stored XSS via DTD entities, a crash on DTD attribute declarations and a mixed case xlink:href bypass of the `<use>` nesting check.
 * Security: SVG files with an internal DTD (custom entities) are now rejected. A standard DOCTYPE is still removed and the file is accepted.
