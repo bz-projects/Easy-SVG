@@ -85,6 +85,7 @@ Please check out my repository on Github:
 * Security: Updated the SVG sanitizer package (enshrined/svg-sanitize) to 1.1.1. It fixes a stored XSS via DTD entities, a crash on DTD attribute declarations and a mixed case xlink:href bypass of the <use> nesting check.
 * Security: SVG files with a DOCTYPE or an unclosed tag are now rejected instead of being stored.
 * Tested with WordPress 7.2
+* Tested with PHP 8.5
 
 = 4.1: November 14, 2025 =
 * Support for new WordPress version
