@@ -3,7 +3,7 @@
 Plugin Name:  Easy SVG Support
 Plugin URI:   https://wordpress.org/plugins/easy-svg/
 Description:  Add SVG support for WordPress.
-Version:      4.2.1
+Version:      4.2.2
 Author:       Benjamin Zekavica
 Author URI:   https://www.benjamin-zekavica.de
 Requires PHP: 8.0
@@ -86,6 +86,11 @@ class esw_svg_attributes extends \enshrined\svgSanitize\data\AllowedAttributes {
 function esw_svg_file_checker( $file ) {
     global $sanitizer;
 
+    // WP-CLI loads plugins inside a function, so the file-level $sanitizer is not a global there.
+    if ( ! $sanitizer instanceof Sanitizer ) {
+        $sanitizer = new Sanitizer();
+    }
+
     $sanitizer->setAllowedTags( new esw_svg_tags() );
     $sanitizer->setAllowedAttrs( new esw_svg_attributes() );
 
@@ -161,6 +166,76 @@ function esw_svg_upload_filter_check_init( $file ) {
     return $file;
 }
 add_filter( 'wp_handle_upload_prefilter', 'esw_svg_upload_filter_check_init' );
+// REST uploads of raw file data and media_sideload_image() go through the sideload prefilter, not the upload one.
+add_filter( 'wp_handle_sideload_prefilter', 'esw_svg_upload_filter_check_init' );
+
+/**
+ * Sanitize every new SVG attachment, however its file got there.
+ *
+ * XML-RPC uploads and importers write the file without an upload prefilter.
+ * A file the sanitizer cannot clean is deleted with its attachment. Files
+ * outside the uploads directory are left alone.
+ *
+ * @param int $attachment_id The new attachment.
+ */
+function esw_svg_attachment_check( $attachment_id ) {
+    $path = get_attached_file( $attachment_id );
+
+    if ( ! is_string( $path ) || '' === $path || 'svg' !== strtolower( pathinfo( $path, PATHINFO_EXTENSION ) ) ) {
+        return;
+    }
+
+    if ( ! is_file( $path ) || ! is_readable( $path ) ) {
+        return;
+    }
+
+    $uploads = wp_upload_dir( null, false );
+    $base    = empty( $uploads['basedir'] ) ? false : realpath( $uploads['basedir'] );
+    $real    = realpath( $path );
+    if ( false === $base || false === $real || 0 !== strpos( $real, rtrim( $base, '/\\' ) . DIRECTORY_SEPARATOR ) ) {
+        return;
+    }
+
+    if ( ! esw_svg_file_checker( $path ) ) {
+        wp_delete_attachment( $attachment_id, true );
+    }
+}
+add_action( 'add_attachment', 'esw_svg_attachment_check' );
+
+/**
+ * Refuse SVG bytes the sanitizer cannot read before wp_upload_bits() writes them.
+ *
+ * Lets XML-RPC answer with an error instead of a half-created attachment.
+ * Readable files pass and are cleaned by esw_svg_attachment_check().
+ *
+ * @param array $upload { name, bits, time }.
+ * @return array|string The upload unchanged, or an error message.
+ */
+function esw_svg_upload_bits_check( $upload ) {
+    global $sanitizer;
+
+    if ( ! is_array( $upload ) || empty( $upload['name'] ) || 'svg' !== strtolower( pathinfo( $upload['name'], PATHINFO_EXTENSION ) ) ) {
+        return $upload;
+    }
+
+    // An importer reserves an empty file first and fills it afterwards.
+    if ( ! isset( $upload['bits'] ) || '' === (string) $upload['bits'] ) {
+        return $upload;
+    }
+
+    if ( ! $sanitizer instanceof Sanitizer ) {
+        $sanitizer = new Sanitizer();
+    }
+    $sanitizer->setAllowedTags( new esw_svg_tags() );
+    $sanitizer->setAllowedAttrs( new esw_svg_attributes() );
+
+    if ( false === $sanitizer->sanitize( (string) $upload['bits'] ) ) {
+        return __( 'Sorry, please check your SVG file.', 'easy-svg' );
+    }
+
+    return $upload;
+}
+add_filter( 'wp_upload_bits', 'esw_svg_upload_bits_check' );
 
 /**
  * Add support for SVG file uploads by modifying MIME types.
