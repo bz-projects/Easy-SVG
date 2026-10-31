@@ -161,6 +161,8 @@ function esw_svg_upload_filter_check_init( $file ) {
     return $file;
 }
 add_filter( 'wp_handle_upload_prefilter', 'esw_svg_upload_filter_check_init' );
+// REST uploads of raw file data and media_sideload_image() go through the sideload prefilter, not the upload one.
+add_filter( 'wp_handle_sideload_prefilter', 'esw_svg_upload_filter_check_init' );
 
 /**
  * Add support for SVG file uploads by modifying MIME types.
