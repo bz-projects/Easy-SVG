@@ -203,6 +203,41 @@ function esw_svg_attachment_check( $attachment_id ) {
 add_action( 'add_attachment', 'esw_svg_attachment_check' );
 
 /**
+ * Refuse SVG bytes the sanitizer cannot read before wp_upload_bits() writes them.
+ *
+ * Lets XML-RPC answer with an error instead of a half-created attachment.
+ * Readable files pass and are cleaned by esw_svg_attachment_check().
+ *
+ * @param array $upload { name, bits, time }.
+ * @return array|string The upload unchanged, or an error message.
+ */
+function esw_svg_upload_bits_check( $upload ) {
+    global $sanitizer;
+
+    if ( ! is_array( $upload ) || empty( $upload['name'] ) || 'svg' !== strtolower( pathinfo( $upload['name'], PATHINFO_EXTENSION ) ) ) {
+        return $upload;
+    }
+
+    // An importer reserves an empty file first and fills it afterwards.
+    if ( ! isset( $upload['bits'] ) || '' === (string) $upload['bits'] ) {
+        return $upload;
+    }
+
+    if ( ! $sanitizer instanceof Sanitizer ) {
+        $sanitizer = new Sanitizer();
+    }
+    $sanitizer->setAllowedTags( new esw_svg_tags() );
+    $sanitizer->setAllowedAttrs( new esw_svg_attributes() );
+
+    if ( false === $sanitizer->sanitize( (string) $upload['bits'] ) ) {
+        return __( 'Sorry, please check your SVG file.', 'easy-svg' );
+    }
+
+    return $upload;
+}
+add_filter( 'wp_upload_bits', 'esw_svg_upload_bits_check' );
+
+/**
  * Add support for SVG file uploads by modifying MIME types.
  *
  * @param array $mimes File type associations.
