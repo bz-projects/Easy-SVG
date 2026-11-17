@@ -81,7 +81,7 @@ Please check out my repository on Github:
 
 
 == Changelog ==
-= 4.2.2: November 1, 2026 =
+= 4.2.2: November 17, 2026 =
 * Security: SVG files are now sanitized on every upload path, including REST uploads of raw data, WP-CLI, XML-RPC and importers.
 
 = 4.2.1: October 29, 2026 =
